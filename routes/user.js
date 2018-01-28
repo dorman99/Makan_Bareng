@@ -28,7 +28,8 @@ router.post('/add',function(req,res){
         res.redirect('/users')
     })
     .catch(err=>{
-        res.render('addUser', { err: err.massage = 'format email yang anda masukan salah' })
+        console.log(err.message)
+        res.render('addUser', { err: err})
     })
 })
 
