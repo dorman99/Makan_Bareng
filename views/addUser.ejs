@@ -8,7 +8,7 @@
 </head>
 <body>
     <%if(err){%>
-        <%=err%>
+        <%=err.message%>
     <%}%>
     <form method="POST">
         <input name="name" type="text" placeholder="input your name here" >
