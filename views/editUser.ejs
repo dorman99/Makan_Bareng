@@ -7,6 +7,9 @@
     <title>edit user here</title>
 </head>
 <body>
+  <%if(err){%>
+    <%=err.message%>
+  <%}%>
     <form method="post">
         <input name="name" type="text" value="<%=dataUser.name%>">
         <input name="email" type="text" value="<%=dataUser.email%>">
