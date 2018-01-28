@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         isEmail: {
-          args: [['en', 'zh']],
           msg: 'format yang kamu masukan salah'
         },
         isUnique: function (value, next) {
