@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>edit user here</title>
+</head>
+<body>
+  <%if(err){%>
+    <%=err.message%>
+  <%}%>
+    <form method="post">
+        <input name="name" type="text" value="<%=dataUser.name%>">
+        <input name="email" type="text" value="<%=dataUser.email%>">
+        <input name="password" type="text" value="<%=dataUser.password%>">
+        <input name="role" type="text" value="<%=dataUser.role%>">
+        <input type="submit" value="edit data user">
+    </form>
+    
+</body>
+</html>

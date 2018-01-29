@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add User Page</title>
+</head>
+<body>
+    <%if(err){%>
+        <%=err.message%>
+    <%}%>
+    <form method="POST">
+        <input name="name" type="text" placeholder="input your name here" >
+        <input name="email" type="text" placeholder="input your email here" >
+        <input name="role" type="text" placeholder="input role here">
+        <input type="text" name="password" placeholder="input password here">
+        <input type="submit" value="add new user">
+    </form>
+</body>
+</html>
