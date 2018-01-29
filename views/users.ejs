@@ -11,6 +11,8 @@
         <th>Id User</th>
         <th>Nama User</th>
         <th>Email User</th>
+        <th>role</th>
+        <th>password</th>
         <th>option</th>
 
         <%dataUsers.forEach(rowUser=>{%>
@@ -18,6 +20,8 @@
                 <td><%=rowUser.id%></td>
                 <td><%=rowUser.name%></td>
                 <td><%=rowUser.email%></td>
+                <td><%=rowUser.role%></td>
+                <td><%=rowUser.password%></td>
                 <td><a href="/users/edit/<%=rowUser.id%>">edit</a>
                 <a href="/users/delete/<%=rowUser.id%>" onclick="return confirm(`sure want to delete this ?`)">delete</a></td>
             </tr>
