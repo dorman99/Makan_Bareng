@@ -10,7 +10,8 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 const userRouter  = require('./routes/user')
 app.use('/users',userRouter)
-
+app.use('/', require('./routes/index'))
+app.use('/thread', require('./routes/thread'))
 // parse application/json
 app.use(bodyParser.json())
 
