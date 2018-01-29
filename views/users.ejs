@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users Page</title>
+</head>
+<body>
+    <table border="1">
+        <th>Id User</th>
+        <th>Nama User</th>
+        <th>Email User</th>
+        <th>option</th>
+
+        <%dataUsers.forEach(rowUser=>{%>
+            <tr>
+                <td><%=rowUser.id%></td>
+                <td><%=rowUser.name%></td>
+                <td><%=rowUser.email%></td>
+                <td><a href="/users/edit/<%=rowUser.id%>">edit</a>
+                <a href="/users/delete/<%=rowUser.id%>" onclick="return confirm(`sure want to delete this ?`)">delete</a></td>
+            </tr>
+        <%})%>
+    </table>
+</body>
+</html>
