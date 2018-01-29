@@ -29,13 +29,9 @@ module.exports = (sequelize, DataTypes) => {
             })
         }
       }
-    }
-  }, {
-      classMethods: {
-        associate: function (models) {
-          // associations can be defined here
-        }
-      }
-    });
+    },
+    role : DataTypes.STRING,
+    password : DataTypes.STRING
+  });
   return User;
 };
