@@ -30,8 +30,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    role : DataTypes.STRING,
-    password : DataTypes.STRING
+    password : {
+      type : DataTypes.STRING
+    },
+    role :{
+      type :DataTypes.STRING
+    }
+
   });
   return User;
 };

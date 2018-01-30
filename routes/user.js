@@ -1,12 +1,13 @@
 var express = require('express')
 var router = express.Router()
 const Model = require('../models')
+var session = require('express-session')
 router.get('/', function (req, res) {
     Model.User.findAll({
         order: [['id', 'ASC']]
     })
         .then(dataUsers => {
-            res.render('users', { dataUsers })
+            res.render('users', { dataUsers:dataUsers,req:req })
             // res.send(dataUser)
         })
         .catch(err => {
