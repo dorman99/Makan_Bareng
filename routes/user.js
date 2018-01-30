@@ -22,7 +22,7 @@ router.get('/add', function (req, res) {
 router.post('/add', function (req, res) {
     let objCreate = {
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         password: req.body.password,
         role : req.body.role
     }
@@ -50,7 +50,7 @@ router.post('/edit/:id', function (req, res) {
     let objEdit = {
         id : req.params.id,
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         role : req.body.role
     }
 
