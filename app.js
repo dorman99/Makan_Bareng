@@ -56,10 +56,14 @@ app.post('/loginWithoutGoogle', function (req, res) {
                     res.redirect('/thread')
                 }
             }else{
-                res.redirect('/loginWithoutGoogle')
+                res.render('loginWithoutGoogle', {
+                    err: 'password yang anda masukan salah'
+                })
             }
         }else{
-            res.redirect('/loginWithoutGoogle')
+            res.render('loginWithoutGoogle', {
+                err: 'email tidak ditemukan , tidak punya akun? silakan sign up'
+            })
         }
     })
 })
@@ -74,6 +78,6 @@ app.get('/logout',loginAuth,function(req,res){ //tinggal make hyper linknya aja 
     })
 })
 
-app.listen(4000,()=>{ //edit crud user
+app.listen(4100,()=>{ //edit crud user
     console.log('you are listing to localhost:4000')
 })
