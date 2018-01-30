@@ -47,6 +47,7 @@ app.post('/loginWithoutGoogle', function (req, res) {
                 // res.send(dataUser)
                 req.session.name = dataUser.name
                 req.session.email = dataUser.email
+                // console.log(dataUser,'---')
                 if(dataUser.role =='admin'){
                     res.redirect('/users')
                 }else{
@@ -61,6 +62,16 @@ app.post('/loginWithoutGoogle', function (req, res) {
     })
 })
 
+app.get('/logout',loginAuth,function(req,res){ //tinggal make hyper linknya aja di tiap ejs kalo udah masuk
+    req.session.destroy(err=>{
+        if(!err){
+            res.redirect('/loginWithOutGoogle')
+        }else{
+            res.send(err)
+        }
+    })
+})
+
 app.listen(4000,()=>{
-    console.log('you are listing to localhost:4000')
+    console.log('you are listing to localhost:3000')
 })
