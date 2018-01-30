@@ -24,6 +24,7 @@ router.post('/add', function (req, res) {
         name: req.body.name,
         email: req.body.email.toLowerCase(),
         password: req.body.password,
+        username:req.body.username.toLowerCase(),
         role : req.body.role
     }
     Model.User.create(objCreate)
@@ -50,6 +51,7 @@ router.post('/edit/:id', function (req, res) {
     let objEdit = {
         id : req.params.id,
         name: req.body.name,
+        username:req.body.username.toLowerCase(),
         email: req.body.email.toLowerCase(),
         role : req.body.role
     }

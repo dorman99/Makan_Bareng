@@ -38,7 +38,7 @@ app.get('/loginWithoutGoogle',function(req,res){
 app.post('/loginWithoutGoogle', function (req, res) {
     Model.User.findOne({
         where : {
-            email : req.body.email.toLowerCase()
+            username : req.body.username.toLowerCase()
         }
     })
     .then(dataUser=>{
@@ -62,7 +62,7 @@ app.post('/loginWithoutGoogle', function (req, res) {
             }
         }else{
             res.render('loginWithoutGoogle', {
-                err: 'email tidak ditemukan , tidak punya akun? silakan sign up'
+                err: 'username tidak ditemukan , tidak punya akun? silakan sign up'
             })
         }
     })
