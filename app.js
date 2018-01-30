@@ -45,13 +45,14 @@ app.post('/loginWithoutGoogle', function (req, res) {
             if(dataUser.password == req.body.password){
                 req.session.isLogin = true
                 // res.send(dataUser)
+                req.session.id = dataUser.id
                 req.session.name = dataUser.name
                 req.session.email = dataUser.email
                 // console.log(dataUser,'---')
                 if(dataUser.role =='admin'){
                     res.redirect('/users')
                 }else{
-                    res.redirect('/thread')
+                    res.redirect('/userView')
                 }
             }else{
                 res.redirect('/loginWithoutGoogle')

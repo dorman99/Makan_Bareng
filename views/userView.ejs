@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>WELCOME</h1>
+    <h1>MAKAN BARENG</h1>
+    <a href="/thread/joinThread">Gabung Acara Makan Bareng</a>
+    <a href="/thread/add">Buat Acara Makan Bareng</a>
+    <table border="1">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Acara Party</th>
+            <th>Makanan</th>
+            <th>Time Started</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <%data.forEach(function(data){%>
+              <td><%= data.id %></td>
+              <td><%= data.judulThread %></td>
+              <td><%= data.JenisMakananID %></td>
+              <td><%= data.waktuMulai %></td>
+            <%})%>
+          </tr>
+        </tbody>
+    </body>
+  </html>

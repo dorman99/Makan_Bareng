@@ -29,14 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             })
         }
       }
-    },
-    password : {
-      type : DataTypes.STRING
-    },
-    role :{
-      type :DataTypes.STRING
     }
-
   });
+  User.associate = function(models){
+    User.hasMany(models.Makanan)
+    User.belongsToMany(models.Thread,{through:"Makanan"})
+  }
   return User;
 };

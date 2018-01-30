@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Model = require('../models')
 
-router.get('/', (req, res) => {
+router.get('/', function (req, res) {
   Model.Thread.findAll()
   .then(function(data) {
     res.render('thread',{keyThread:data})
@@ -77,6 +77,44 @@ router.get('/delete/:id', function (req, res) {
         res.send(err)
     })
 })
+
+router.get('/find/:id', function (req, res) {
+    Model.User.findById(req.params.id,{
+      include: Model.Thread
+    })
+    .then(function(data){
+        // res.send(data)
+        res.render('userView',{data:data.Threads})
+    }).catch(err => {
+        res.send(err)
+    })
+})
+
+router.get('/joinThread', function (req, res) {
+  Model.Thread.findAll()
+  .then(function(data) {
+    res.render('joinThread',{keyThread:data})
+  })
+  .catch(function(err) {
+    res.send(err)
+  })
+})
+
+router.post('/join/:id', (req, res) => {
+  // res.send(req.body)
+    let objId={
+        UserId : req.session.id,
+        ThreadId : req.body.id,
+    }
+    // res.send(objThread)
+    Model.Makanan.create(objId)
+    .then(function() {
+        res.redirect('/userView')
+            })
+    .catch(function(err) {
+        res.send(err)
+      })
+    })
 
 
 

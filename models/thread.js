@@ -5,12 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     JenisMakananID: DataTypes.STRING,
     waktuMulai: DataTypes.STRING,
     waktuBerakhir: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  Thread.associate = function(models){
+    Thread.hasMany(models.Makanan)
+    Thread.belongsToMany(models.User,{through:"Makanan"})
+  }
   return Thread;
 };
