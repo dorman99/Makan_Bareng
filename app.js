@@ -22,9 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // const loginWithOutGoogleRouter = require('./routes/loginWithOutGoogleAPI')
 const userRouter  = require('./routes/user')
 const threadRouter = require('./routes/thread')
+const signupRouter = require('./routes/signUp')
 
 app.use('/users',loginAuth,userRouter)
 app.use('/thread', threadRouter)
+app.use('/signup',signupRouter)
 // app.use('/loginWithoutGoogle',loginWithOutGoogleRouter)
 
 app.get('/loginWithoutGoogle',function(req,res){
@@ -36,7 +38,7 @@ app.get('/loginWithoutGoogle',function(req,res){
 app.post('/loginWithoutGoogle', function (req, res) {
     Model.User.findOne({
         where : {
-            email : req.body.email
+            email : req.body.email.toLowerCase()
         }
     })
     .then(dataUser=>{
@@ -73,5 +75,5 @@ app.get('/logout',loginAuth,function(req,res){ //tinggal make hyper linknya aja 
 })
 
 app.listen(4000,()=>{ //edit crud user
-    console.log('you are listing to localhost:3000')
+    console.log('you are listing to localhost:4000')
 })
