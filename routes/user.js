@@ -22,7 +22,9 @@ router.get('/add', function (req, res) {
 router.post('/add', function (req, res) {
     let objCreate = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password,
+        role : req.body.role
     }
     Model.User.create(objCreate)
         .then(() => {
@@ -48,7 +50,8 @@ router.post('/edit/:id', function (req, res) {
     let objEdit = {
         id : req.params.id,
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        role : req.body.role
     }
 
     Model.User.update(objEdit, {
