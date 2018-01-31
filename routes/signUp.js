@@ -11,13 +11,13 @@ router.post('/',function(req,res){
         name      : req.body.name,
         email     : req.body.email.toLowerCase(),
         password  : req.body.password,
-        username  : req.body.username,
+        username  : req.body.username.toLowerCase(),
         role      : 'user'
     }
 
     Model.User.create(objSignUp)
     .then(()=>{
-        res.redirect('/loginwithoutgoogle')
+        res.redirect('/login')
     })
     .catch(err=>{
         res.render('signup', { err: err })
