@@ -7,8 +7,11 @@
     <title>login tanpa google</title>
 </head>
 <body>
+    <%if(err){%>
+        <p><%=err%></p>
+    <%}%>
     <form method="post">
-        <input name="email" type="text" placeholder="input your email">
+        <input name="username" type="text" placeholder="input your username here">
         <input name="password" type="text" placeholder="input your password">
         <input type="submit" value="log in">
     </form>
