@@ -20,6 +20,7 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
   // res.send(req.body)
+
     let objThread={
         judulThread : req.body.judulThread,
         JenisMakananID : req.body.JenisMakananID,
@@ -80,18 +81,20 @@ router.get('/delete/:id', function (req, res) {
 })
 
 router.get('/find/:id', function (req, res) {
+    // res.send(req.params.id)
     Model.User.findById(req.params.id,{
       include: Model.Thread
     })
     .then(function(data){
         // res.send(data.Threads)
-        res.render('userView',{data:data.Threads})
+        res.render('userView',{data:data.Threads,idUser:req.params.id})
     }).catch(err => {
         res.send(err)
     })
 })
 
-router.get('/joinThread', function (req, res) {
+router.get('/joinThread/:id', function (req, res) {
+    
   Model.Thread.findAll()
   .then(function(data) {
     res.render('joinThread',{keyThread:data})
