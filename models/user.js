@@ -71,8 +71,12 @@ module.exports = (sequelize, DataTypes) => {
           msg:'username : tidak boleh ada spesial character ex:!@#$_ dan spasi '
         }
       }
+>
     }
-
   });
+  User.associate = function(models){
+    User.hasMany(models.Makanan)
+    User.belongsToMany(models.Thread,{through:"Makanan"})
+  }
   return User;
 };
