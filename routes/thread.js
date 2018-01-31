@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 
 
 router.get('/add', (req, res) => {
-    res.render('addThread')
+    res.render('addThread', { err: null })
 });
 
 router.post('/add', (req, res) => {
@@ -28,11 +28,12 @@ router.post('/add', (req, res) => {
     }
     // res.send(objThread)
     Model.Thread.create(objThread)
-    .then(function() {
+    .then(function(){
         res.redirect('/thread')
             })
-    .catch(function(err) {
-        res.send(err)
+    .catch(function(err){
+      console.log(err.message)
+      res.render('addThread', { err: err })
       })
     })
 
@@ -83,7 +84,7 @@ router.get('/find/:id', function (req, res) {
       include: Model.Thread
     })
     .then(function(data){
-        // res.send(data)
+        // res.send(data.Threads)
         res.render('userView',{data:data.Threads})
     }).catch(err => {
         res.send(err)

@@ -1,10 +1,41 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Thread = sequelize.define('Thread', {
-    judulThread: DataTypes.STRING,
-    JenisMakananID: DataTypes.STRING,
+    judulThread:{
+      type:DataTypes.STRING,
+      validate:{
+        notEmpty:{
+        msg:'maaf, format isian thread name yang anda isi salah'
+        },
+        isAlpha:{
+        msg: 'maaf, format isian thread name yang anda isi salah'
+        }
+      }
+    },
+    JenisMakananID: {
+      type:DataTypes.STRING,
+      validate:{
+        notEmpty:{
+        msg:'maaf, format isian makanan anda salah'
+        },
+        isAlpha:{
+        msg: 'maaf, format isian makanan anda salah'
+        }
+      }
+    },
     waktuMulai: DataTypes.STRING,
-    waktuBerakhir: DataTypes.STRING
+    waktuBerakhir: DataTypes.STRING,
+    location:{
+      type:DataTypes.STRING,
+      validate:{
+        notNull:{
+        msg:'maaf, format isian lokasi anda salah'
+        },
+        isAlpha:{
+        msg: 'maaf, format isian lokasi anda salah'
+        }
+      }
+    }
   });
   Thread.associate = function(models){
     Thread.hasMany(models.Makanan)

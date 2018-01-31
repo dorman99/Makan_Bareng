@@ -9,5 +9,8 @@
   <input type="text" placeholder="location" name="location">
   <button>SUBMIT</button>
 </form>
+<%if(err){%>
+    <%=err.message%>
+<%}%>
 </body>
 </html>
