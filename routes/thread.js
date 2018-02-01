@@ -115,8 +115,16 @@ router.get('/join/:id', (req, res) => {
         UserId : req.session.idUser,
         ThreadId : req.params.id
     }
-  res.render('MakananCreate',{dataUT:objAddTread,err:null})
-})
+    Model.Thread.findById(req.params.id,{
+      include: Model.User
+    })
+    .then(function(data){
+        // res.send(data)
+        res.render('MakananCreate',{dataUsers:data.Users,dataUser:data,dataUT:objAddTread,err:null})
+    }).catch(err => {
+        res.send(err)
+    })
+  })
 
 router.get('/delete/makanan/:id', function (req, res) {
     Model.Makanan.destroy({
