@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     name: DataTypes.STRING,
@@ -78,5 +80,22 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Makanan)
     User.belongsToMany(models.Thread,{through:"Makanan"})
   }
+
+  User.beforeCreate((user, options) => {
+    console.log('masuk')
+    return bcrypt.hash(user.password, saltRounds).then(function (hashed) {
+        user.password = hashed
+    });;
+  });
+
+  User.prototype.comparePassWord = function (passInput,cb) {
+    // console.log('masuk')
+   bcrypt.compare(passInput, this.password).then(function (result) {
+      if(result){
+        cb(result)
+      }
+    });
+  }
+
   return User;
 };

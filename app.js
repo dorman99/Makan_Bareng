@@ -57,24 +57,27 @@ app.post('/login', function (req, res) {
     .then(dataUser=>{
         if(dataUser){
             //cek password nanti make becrypte
-            if(dataUser.password == req.body.password){
-                req.session.isLogin = true
-                // res.send(dataUser)
-                req.session.idUser = dataUser.id
-                req.session.name = dataUser.name
-                req.session.email = dataUser.email
-                // console.log(dataUser,'---')
-                if(dataUser.role =='admin'){
-                    res.redirect('/users')
-                }else{
-                    // console.log('hahah')
-                    res.redirect(`/thread/find/${req.session.idUser}`)
+            dataUser.comparePassWord(req.body.password,(result)=>{
+                if (result) {
+                    req.session.isLogin = true
+                    // res.send(dataUser)
+                    req.session.idUser = dataUser.id
+                    req.session.name = dataUser.name
+                    req.session.email = dataUser.email
+                    // console.log(dataUser,'---')
+                    if (dataUser.role == 'admin') {
+                        req.session.isloginadmin = true
+                        res.redirect('/users')
+                    } else {
+                        // console.log('hahah')
+                        res.redirect(`/thread/find/${req.session.idUser}`)
+                    }
+                } else {
+                    res.render('loginWithoutGoogle', {
+                        err: 'password yang anda masukan salah'
+                    })
                 }
-            }else{
-                res.render('loginWithoutGoogle', {
-                    err: 'password yang anda masukan salah'
-                })
-            }
+            })
         }else{
             res.render('loginWithoutGoogle', {
                 err: 'username tidak ditemukan , tidak punya akun? silakan sign up'
