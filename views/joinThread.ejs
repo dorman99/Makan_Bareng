@@ -17,13 +17,12 @@
         </thead>
         <tbody>
           <%keyThread.forEach(data =>{%>
-          <tr>
-              <td><%=data.id%></td>
-              <td><%=data.judulThread%></td>
-              <td><%=data.JenisMakananID%></td>
-              <td><%=data.waktuMulai%></td>
-              <td><a href="/thread/join/<%=data.id%>" action="/thread/join/:id" method="get">join</td>
-          </tr>
+                    <td><%=data.id%></td>
+                    <td><%=data.judulThread%></td>
+                    <td><%=data.JenisMakananID%></td>
+                    <td><%=data.waktuMulai%></td>
+                    <td><a href="/thread/join/<%=data.id%>">join</td>
+                </tr>
           <%})%>
         </tbody>
     </body>

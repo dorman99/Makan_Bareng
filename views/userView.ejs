@@ -8,7 +8,8 @@
     <h1>WELCOME</h1>
     <h1>MAKAN BARENG</h1>
     <a href="/thread/joinThread/<%=idUser%>">Gabung Acara Makan Bareng</a>
-    <a href="/thread/add/">Buat Acara Makan Bareng</a>
+
+    <a href="/thread/user/add">Buat Acara Makan Bareng</a>
     <table border="1">
         <thead>
           <tr>
@@ -19,8 +20,10 @@
           </tr>
         </thead>
         <tbody>
+
+          <%data.forEach(function(data){%>
           <tr>
-            <%data.forEach(function(data){%>
+
               <td><%= data.id %></td>
               <td><%= data.judulThread %></td>
               <td><%= data.JenisMakananID %></td>

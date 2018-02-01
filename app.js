@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var session = require('express-session')
+
+
 const cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
@@ -9,6 +11,7 @@ const loginAuth =  require('./helper/authLogin')
 const Model = require('./models')
 app.use(passport.initialize())
 app.use(cookieParser());
+
 
 app.use(session({
     secret: 'keychain'
@@ -31,17 +34,21 @@ const threadRouter = require('./routes/thread')
 const signupRouter = require('./routes/signUp')
 
 app.use('/users',loginAuth,userRouter)
+
 app.use('/thread', threadRouter)
 app.use('/signup',signupRouter)
 app.use('/signInGoogle',googlePlusRouter)
 
 app.get('/login',function(req,res){
+
     res.render('loginWithoutGoogle',{
         err:null
     })
 })
 
+
 app.post('/login', function (req, res) {
+
     Model.User.findOne({
         where : {
             username : req.body.username.toLowerCase()

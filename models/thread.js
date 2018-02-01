@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     location:{
       type:DataTypes.STRING,
       validate:{
-        notNull:{
+        notEmpty:{
         msg:'maaf, format isian lokasi anda salah'
         },
         isAlpha:{

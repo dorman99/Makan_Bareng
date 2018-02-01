@@ -54,7 +54,8 @@ router.post('/edit/:id', function (req, res) {
       judulThread : req.body.judulThread,
       JenisMakananID : req.body.JenisMakananID,
       waktuMulai : req.body.waktuMulai,
-      waktuBerakhir : req.body.waktuBerakhir
+      waktuBerakhir : req.body.waktuBerakhir,
+      location : req.body.location
   }
 
     Model.Thread.update(objThread, {
@@ -86,7 +87,6 @@ router.get('/find/:id', function (req, res) {
       include: Model.Thread
     })
     .then(function(data){
-        // res.send(data.Threads)
         res.render('userView',{data:data.Threads,idUser:req.params.id})
     }).catch(err => {
         res.send(err)
@@ -94,31 +94,88 @@ router.get('/find/:id', function (req, res) {
 })
 
 router.get('/joinThread/:id', function (req, res) {
-    
+
+
   Model.Thread.findAll()
   .then(function(data) {
-    res.render('joinThread',{keyThread:data})
+    res.render('joinThread',{keyThread:data,idUser:req.params.id})
   })
   .catch(function(err) {
     res.send(err)
   })
 })
 
-router.post('/join/:id', (req, res) => {
-  // res.send(req.body)
+
+router.get('/join/:id', (req, res) => {
+    // console.log('hhhhhhhhhhhhhhhhhhhhhh',req.session.idUser);
     let objId={
-        UserId : req.session.id,
-        ThreadId : req.body.id,
+        UserId   :req.session.idUser,
+        ThreadId :req.params.id,
+        role     :'member'
     }
-    // res.send(objThread)
+
     Model.Makanan.create(objId)
     .then(function() {
-        res.redirect('/userView')
-            })
+      // console.log('---',req.session.idUser)
+      Model.User.findById(req.session.idUser,{
+        include: Model.Thread
+      })
+    .then(function(data){
+          res.render('userView',{data:data.Threads,idUser:req.params.id
+          })
+
     .catch(function(err) {
         res.send(err)
       })
     })
+
+    .catch(function(err) {
+        res.send(err)
+    })
+  })
+})
+
+router.get('/user/add', (req, res) => {
+    res.render('userAddThread', { err: null })
+});
+
+router.post('/user/add', (req, res) => {
+  // res.send(req.body)
+    let objThread={
+        judulThread : req.body.judulThread,
+        JenisMakananID : req.body.JenisMakananID,
+        waktuMulai : req.body.waktuMulai,
+        waktuBerakhir : req.body.waktuBerakhir,
+        location : req.body.location
+    }
+
+    Model.Thread.create(objThread)
+    .then(function(dataThread){
+      // res.send(dataThread)
+      let objId={
+          UserId   :req.session.idUser,
+          ThreadId :dataThread.id,
+          role     :'master'
+      }
+      Model.Makanan.create(objId)
+      .then(function(){
+        Model.User.findById(req.session.idUser,{
+        include: Model.Thread
+        }).then(function(data){
+          res.redirect(`/thread/find/${req.session.idUser}`)
+        }).catch(function(err) {
+            res.send(err)
+          })
+      })
+      .catch(function(err) {
+        res.send(err)
+    })
+  }).catch(function(err) {
+    res.send(err)
+})
+})
+
+
 
 
 
