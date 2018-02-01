@@ -58,6 +58,7 @@ app.post('/login', function (req, res) {
         if(dataUser){
             //cek password nanti make becrypte
             dataUser.comparePassWord(req.body.password,(result)=>{
+                
                 if (result) {
                     req.session.isLogin = true
                     // res.send(dataUser)
@@ -72,7 +73,8 @@ app.post('/login', function (req, res) {
                         // console.log('hahah')
                         res.redirect(`/thread/find/${req.session.idUser}`)
                     }
-                } else {
+                } else if(result == false) {
+                    
                     res.render('loginWithoutGoogle', {
                         err: 'password yang anda masukan salah'
                     })

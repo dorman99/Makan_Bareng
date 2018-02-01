@@ -33,7 +33,7 @@ router.post('/add', (req, res) => {
         res.redirect('/thread')
             })
     .catch(function(err){
-      res.render('addThread', { err: err })
+        res.render('addThread', { err: err.errors[0].message })
       })
     })
 
@@ -141,6 +141,7 @@ router.get('/delete/makanan/:id', function (req, res) {
 
 
 router.post('/join/:id',(req,res)=>{
+    // res.send(req.body)
     let objCreate = {
         ThreadId : req.body.ThreadId,
         UserId   : req.body.UserId,
@@ -152,7 +153,12 @@ router.post('/join/:id',(req,res)=>{
     .then(()=>{
         res.redirect(`/thread/find/${req.body.UserId}`)
     }).catch(err=>{
-        res.render('MakananCreate', {dataUT:objCreate,err:err })
+        Model.Thread.findById(req.params.id, {
+            include: Model.User
+        }).then(function (data) {
+                // res.send(data)
+                res.render('MakananCreate', { dataUsers: data.Users, dataUser: data, dataUT: objCreate, err: err.errors[0].message })
+            })
     })
 })
 
@@ -190,10 +196,10 @@ router.post('/user/add', (req, res) => {
           })
       })
       .catch(function(err) {
-          res.render('userAddThread', { err: err })
+          res.render('userAddThread', { err: err.errors[0].message })
     })
   }).catch(function(err) {
-      res.render('userAddThread', { err: err })
+      res.render('userAddThread', { err: err.errors[0].message })
 })
 })
 

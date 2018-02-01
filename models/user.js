@@ -93,6 +93,8 @@ module.exports = (sequelize, DataTypes) => {
    bcrypt.compare(passInput, this.password).then(function (result) {
       if(result){
         cb(result)
+      }else{
+        cb(result)
       }
     });
   }
