@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>signup page</title>
+</head>
+<body>
+    <h1>welcome come join us</h1>
+    <%if(err){%>
+        <p><%=err%></p>
+    <%}%>
+    <form  method="post">
+        <input name="name" type="text" placeholder="input your name here">
+        <input name="username" type="text" placeholder="input yourusername here">
+        <input name="email" type="text" placeholder="input your name email">
+        <input name="password" type="text" placeholder="input your name password">
+        <input type="submit" value="sign up now !">
+    </form>
+</body>
+</html>

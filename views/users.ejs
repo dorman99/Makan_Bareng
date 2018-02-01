@@ -7,18 +7,20 @@
     <title>Users Page</title>
 </head>
 <body>
+    <h1>welcome <%=req.session.name%></h1>
     <table border="1">
         <th>Id User</th>
         <th>Nama User</th>
+        <th>username</th>
         <th>Email User</th>
         <th>role</th>
         <th>password</th>
         <th>option</th>
-
         <%dataUsers.forEach(rowUser=>{%>
             <tr>
                 <td><%=rowUser.id%></td>
                 <td><%=rowUser.name%></td>
+                <td><%=rowUser.username%></td>
                 <td><%=rowUser.email%></td>
                 <td><%=rowUser.role%></td>
                 <td><%=rowUser.password%></td>
