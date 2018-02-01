@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login tanpa google</title>
+</head>
+<body>
+    <%if(err){%>
+        <p><%=err%></p>
+    <%}%>
+    <form method="post">
+        input your username :
+        <br>
+        <input name="username" type="text" placeholder="input your username here">
+        <br>
+        input your password:
+        <br>
+        <input name="password" type="password" placeholder="input your password">
+        <br>
+        <br>
+        <input type="submit" value="log in">
+    </form>
+    <div>
+        <a href="/signInGoogle"><img style="width:180px;height:100px;" src="https://tctechcrunch2011.files.wordpress.com/2013/04/sign-in-with-google.png?w=400">
+        </a>
+    </div>
+    <a href="/signup">let sign up here !</a>
+</body>
+</html>
