@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%- include ./partials/materilzeinit%>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-    <h1>WELCOME</h1>
-    <h3><%=dataUser.name%></h3>
-    <h1>MAKAN BARENG</h1>
-    <br>
-    <a href="/thread/joinThread/<%=dataUser.id%>">Gabung Acara Makan Bareng</a>
-    <br>
-    <a href="/thread/user/add">Buat Acara Makan Bareng</a>
-    <table>
+   
+   <div class="row">
+     <div class="container">
+      <div class="row">
+        <h4>welcome</h4>
+        <h5>
+          <%=dataUser.name%>
+        </h5>
+      </div>
+        <div class="row">
+          <a class="waves-effect waves-light btn" href="/thread/joinThread/<%=dataUser.id%>">Gabung Acara Makan Bareng</a>
+        </div>
+        <div class="row">
+          <a class="waves-effect waves-light btn" href="/thread/user/add">Buat Acara Makan Bareng</a>
+        </div>
+    </div>
+   </div>
+    <div class="row">
+      <div class="col s6">
+        <div class="container">
       <table border="1">
           <thead>
-            <h4>Ini Acara yang Kamu Buat</h4>
+            <h4>Ini Acara Yang Kamu Ikuti</h4>
+            
             <tr>
               <th>id</th>
               <th>Acara Party</th>
               <th>Tema Makanan</th>
-              <th>Makanan Party</th>
+              <th>Makanan Yang Kamu Harus Bawa</th>
               <th>Time Started</th>
               <th>Action</th>
             </tr>
@@ -40,15 +54,19 @@
             <%})%>
           </tbody>
     </table>
-    <table>
+    </div>
+      </div>
+      <div class="col s6">
+        <div class="container">
+      <table>
       <table border="1">
       <thead>
-        <h4>Ini Acara Yang Kamu Ikuti</h4>
+        <h4>Ini Acara yang Kamu Buat</h4>
         <tr>
           <th>id</th>
           <th>Acara Party</th>
           <th>Tema Makanan</th>
-          <th>Makanan yang harus kamu bawa</th>
+          
           <th>Time Started</th>
           <th>Action</th>
         </tr>
@@ -60,7 +78,7 @@
             <td><%= data.id %></td>
             <td><%= data.judulThread %></td>
             <td><%= data.JenisMakananID %></td>
-            <td><%=data.Makanan.namaMakanan%></td>
+         
             <td><%= data.waktuMulai %></td>
             <td> <a href="/thread/delete/makanan/<%=data.id%>">delete</a> </td>
           <%}%>
@@ -68,5 +86,9 @@
         <%})%>
       </tbody>
     </table>
+    </div>
+      </div>
+    </div>
+    <%- include ./partials/logout%>
     </body>
   </html>

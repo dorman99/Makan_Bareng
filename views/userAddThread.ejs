@@ -1,21 +1,28 @@
 <html>
+  <%- include ./partials/materilzeinit%>
 <body>
 <h1>USER ADD THREAD</h1>
-<form class="" action="/thread/user/add" method="post">
-  <input type="text" placeholder="judulThread" name="judulThread">
-  <br>
-  <input type="text" placeholder="JenisMakananID" name="JenisMakananID">
-  <br>
-  <input type="date" placeholder="waktuMulai" name="waktuMulai">
-  <br>
-  <input type="date" placeholder="waktuBerakhir" name="waktuBerakhir">
-  <br>
-  <input type="text" placeholder="location" name="location">
-  <br>
-  <input type="text" name="namaMakanan" placeholder="masukan makanan yang ingin kamu bawa">
-  <br>
-  <input type="submit" value="make thread!">
-</form>
+<div class="container">
+  <form class="" action="/thread/user/add" method="post">
+    <input type="text" placeholder="judulThread" name="judulThread">
+    <br>
+    <input type="text" placeholder="JenisMakananID" name="JenisMakananID">
+    <br>
+    <input type="date" placeholder="waktuMulai" name="waktuMulai">
+    <br>
+    <input type="date" placeholder="waktuBerakhir" name="waktuBerakhir">
+    <br>
+    <input type="text" placeholder="location" name="location">
+    <br>
+    <input type="text" name="namaMakanan" placeholder="masukan makanan yang ingin kamu bawa">
+    <br>
+  <button class="btn waves-effect waves-light" type="submit" name="action">
+    Submit
+    <i class="material-icons right"></i>
+  </button>
+  </form>
+</div>
+<%- include ./partials/logout%>
 <%if(err){%>
    <p style="color:red"><%=err%></p>
 <%}%>

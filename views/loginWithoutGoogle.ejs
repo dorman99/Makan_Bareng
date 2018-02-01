@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%- include ./partials/materilzeinit%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,22 +11,28 @@
     <%if(err){%>
         <p><%=err%></p>
     <%}%>
-    <form method="post">
-        input your username :
-        <br>
-        <input name="username" type="text" placeholder="input your username here">
-        <br>
-        input your password:
-        <br>
-        <input name="password" type="password" placeholder="input your password">
-        <br>
-        <br>
-        <input type="submit" value="log in">
-    </form>
-    <div>
-        <a href="/signInGoogle"><img style="width:180px;height:100px;" src="https://tctechcrunch2011.files.wordpress.com/2013/04/sign-in-with-google.png?w=400">
-        </a>
+
+    <%- include ./partials/rumah%>
+    <div class="row">
+        <div class="col s2"></div>
+        <div class="col s8">
+            <form method="post">
+                <label class="active" for="first_name2">User Name :</label>
+                <input name="username" type="text" placeholder="input your username here">
+                <label class="active" for="first_name2">Password :</label>
+                <input name="password" type="password" placeholder="input your password">
+                
+                <div class="row">
+                    <div class="col s2"><input  class="btn waves-effect waves-light" type="submit" value="LoGin"></div>
+                    <div class="col s1"><a href="/signInGoogle">
+                        <img style="width:30px;height:30px;" src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-plus-icon.png"></div>
+                    <div class="col s2"><a href="/signup">let sign up here !</a></div>
+                </div>
+            </form>
+            
+        </div>
+        <div class="col s2"></div>
+
     </div>
-    <a href="/signup">let sign up here !</a>
 </body>
 </html>

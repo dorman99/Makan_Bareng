@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%- include ./partials/materilzeinit%>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
     <h1>THREAD LIST</h1>
     <a href="/thread/add">ADD THREAD</a>
-    <table border="1">
+    <div class="container">
+        <table class="highlight">
         <thead>
           <tr>
             <th>id</th>
@@ -32,5 +34,7 @@
           </tr>
           <%})%>
         </tbody>
+      </table>
+    </div>
     </body>
   </html>

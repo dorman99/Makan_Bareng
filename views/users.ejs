@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%- include ./partials/materilzeinit%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,7 +9,8 @@
 </head>
 <body>
     <h1>welcome <%=req.session.name%></h1>
-    <table border="1">
+    <div class="container">
+         <table  class="highlight" border="1">
         <th>Id User</th>
         <th>Nama User</th>
         <th>username</th>
@@ -29,5 +31,7 @@
             </tr>
         <%})%>
     </table>
+    <%- include ./partials/logout%>
+    </div>
 </body>
 </html>
