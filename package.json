@@ -18,8 +18,14 @@
   "homepage": "https://github.com/dorman99/Makan_Bareng#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "moment": "^2.20.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
     "pg": "^6.4.2",
     "sequelize": "^4.32.2",
     "sequelize-cli": "^3.2.0"

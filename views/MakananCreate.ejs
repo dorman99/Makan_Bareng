@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>create CJ</title>
+</head>
+<body>
+  <table>
+    <table border="1">
+        <thead>
+          <h4>Ini Yang Udah Ikutan Acaranya</h4>
+          <tr>
+            <th>Id User</th>
+            <th>Nama User</th>
+            <th>Makanan Yang Dibawa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%dataUsers.forEach(function(data){%>
+          <tr>
+              <td><%= data.id %></td>
+              <td><%= data.username %></td>
+              <td><%= data.Makanan.namaMakanan %></td>
+          </tr>
+          <%})%>
+        </tbody>
+  </table>
+  <table>
+    <br>
+    <br>
+    <form  method="post">
+        <input name="UserId" type="hidden" value="<%=dataUT.UserId%>">
+        <input name="ThreadId" type="hidden" value="<%=dataUT.ThreadId%>">
+        <input name="makanan" placeholder="Ayo Ikutan Kuy!" type="text">
+        <input type="submit" value="GANBATE">
+    </form>
+    <%if(err){%>
+        <p style="color:red"><%=err%></p>
+    <%}%>
+
+</body>
+</html>

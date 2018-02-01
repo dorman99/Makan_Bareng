@@ -1,0 +1,6 @@
+<% if(User.Identity.IsAuthenticated){ %>
+  <tr>
+
+  <% } else { %>
+<b>Sign In</b>
+<% } %>

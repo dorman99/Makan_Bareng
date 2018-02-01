@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sign in by gmail</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/signingoogle/loginbygoogle" method="post">
+        <input name="name" type="text" value="<%=dataNewUser.name%>">
+        <input name="username" type="text" value="<%=dataNewUser.username  %>">
+        <input name="email" type="hidden" value="<%=dataNewUser.email%>">
+        <input name="role" type="hidden" value="<%=dataNewUser.role%>">
+        <input name="password" type="text" placeholder="input your password here">
+        <input type="submit" value="procced">
+        <%if(err){%>
+            <p style="color:red"><%=err%></p>
+        <%}%>
+        </form>
+        
+    </div>
+</body>
+</html>
