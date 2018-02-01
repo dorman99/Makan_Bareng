@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%- include ./partials/materilzeinit%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>signup page</title>
 </head>
 <body>
-    <h1>welcome come join us</h1>
+    
     <%if(err){%>
         <p><%=err%></p>
     <%}%>
-    <form  method="post">
-        <input name="name" type="text" placeholder="input your name here">
-        <input name="username" type="text" placeholder="input yourusername here">
-        <input name="email" type="text" placeholder="input your name email">
-        <input name="password" type="password" placeholder="input your name password">
-        <input type="submit" value="sign up now !">
-    </form>
+   
+    <div class="row">
+        <div class="col s2">
+            <%- include ./partials/rumah%>
+        </div>
+        <div class="col s8"><h1>welcome come join us</h1></div>
+        <div class="col s2"></div>
+    </div>
+    <div class="row">
+        <div class="col s2"></div>
+        <div class="col s8">
+            <form method="post">
+                <input name="name" type="text" placeholder="input your name here">
+                <input name="username" type="text" placeholder="input yourusername here">
+                <input name="email" type="text" placeholder="input your name email">
+                <input name="password" type="password" placeholder="input your name password">
+                <input  class="btn waves-effect waves-light" type="submit" value="sign up now !">
+            </form>
+        </div>
+        <div class="col s2"></div>
+    </div>
 </body>
 </html>

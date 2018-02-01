@@ -18,7 +18,7 @@ app.use(session({
 }))
 
 app.get('/',function(req,res){
-    res.send('hello dunia')
+    res.render('home')
 })
 
 app.set('views', './views')
@@ -91,7 +91,7 @@ app.post('/login', function (req, res) {
 app.get('/logout',function(req,res){ //tinggal make hyper linknya aja di tiap ejs kalo udah masuk
     req.session.destroy(err=>{
         if(!err){
-            res.redirect('/login')
+            res.redirect('/')
         }else{
             res.send(err)
         }
