@@ -4,7 +4,7 @@ function cekLogin(req,res,next){
     if(isLoggedIn){
         next()
     }else{
-        res.redirect('/loginWithOutGoogle')
+        res.redirect('/login')
     }
 }
 

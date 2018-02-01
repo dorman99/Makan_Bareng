@@ -87,7 +87,6 @@ router.get('/find/:id', function (req, res) {
       include: Model.Thread
     })
     .then(function(data){
-        // res.send(data)
         res.render('userView',{data:data.Threads,idUser:req.params.id})
     }).catch(err => {
         res.send(err)
@@ -95,6 +94,7 @@ router.get('/find/:id', function (req, res) {
 })
 
 router.get('/joinThread/:id', function (req, res) {
+
 
   Model.Thread.findAll()
   .then(function(data) {
@@ -104,6 +104,7 @@ router.get('/joinThread/:id', function (req, res) {
     res.send(err)
   })
 })
+
 
 router.get('/join/:id', (req, res) => {
     // console.log('hhhhhhhhhhhhhhhhhhhhhh',req.session.idUser);
@@ -122,10 +123,12 @@ router.get('/join/:id', (req, res) => {
     .then(function(data){
           res.render('userView',{data:data.Threads,idUser:req.params.id
           })
+
     .catch(function(err) {
         res.send(err)
       })
     })
+
     .catch(function(err) {
         res.send(err)
     })
@@ -171,6 +174,7 @@ router.post('/user/add', (req, res) => {
     res.send(err)
 })
 })
+
 
 
 
