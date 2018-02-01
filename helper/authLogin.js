@@ -8,4 +8,14 @@ function cekLogin(req,res,next){
     }
 }
 
-module.exports = cekLogin
+function cekLoginAdmin (req,res,next){
+    let isAdmin = req.session.isloginadmin
+
+    if(isAdmin){
+        next()
+    }else{
+        res.redirect('/login')
+    }
+}
+
+module.exports = {cekLogin,cekLoginAdmin}

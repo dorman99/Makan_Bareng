@@ -5,10 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       validate:{
         notEmpty:{
-        msg:'maaf, format isian thread name yang anda isi salah'
-        },
-        isAlpha:{
-        msg: 'maaf, format isian thread name yang anda isi salah'
+        msg:'maaf, input tidak boleh kosong'
         }
       }
     },
@@ -16,15 +13,26 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       validate:{
         notEmpty:{
-        msg:'maaf, format isian makanan anda salah'
+        msg:'maaf, format isian input tidak boleh kosong'
         },
-        isAlpha:{
-        msg: 'maaf, format isian makanan anda salah'
+      }
+    },
+    waktuMulai: {
+      type: DataTypes.STRING,
+      validate :{
+        notEmpty :{
+          msg :'input waktu mulai tidak boleh kosong'
         }
       }
     },
-    waktuMulai: DataTypes.STRING,
-    waktuBerakhir: DataTypes.STRING,
+    waktuBerakhir: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty: {
+          msg: 'input waktu berakhir tidak boleh kosong'
+        }
+      }
+    },
     location:{
       type:DataTypes.STRING,
       validate:{

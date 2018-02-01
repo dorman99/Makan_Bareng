@@ -33,7 +33,6 @@ router.post('/add', (req, res) => {
         res.redirect('/thread')
             })
     .catch(function(err){
-      console.log(err.message)
       res.render('addThread', { err: err })
       })
     })
@@ -87,52 +86,52 @@ router.get('/find/:id', function (req, res) {
       include: Model.Thread
     })
     .then(function(data){
-        res.render('userView',{data:data.Threads,idUser:req.params.id})
+        // res.send(data)
+        // console.log(data.Threads.Makanan)
+        res.render('userView',{dataThreads:data.Threads,dataUser:data})
     }).catch(err => {
         res.send(err)
     })
 })
 
 router.get('/joinThread/:id', function (req, res) {
-
-
-  Model.Thread.findAll()
-  .then(function(data) {
-    res.render('joinThread',{keyThread:data,idUser:req.params.id})
-  })
-  .catch(function(err) {
-    res.send(err)
-  })
+    Model.User.findOne({
+        where :{
+            id:req.params.id
+        },
+        include:[{model:Model.Makanan}]
+    }).then(dataUser=>{
+       Model.Thread.findAll()
+        .then(dataThread=>{
+            res.render('joinThread', { dataThread: dataThread, dataUser: dataUser ,err:null})            
+        })
+    })
 })
 
 
 router.get('/join/:id', (req, res) => {
-    // console.log('hhhhhhhhhhhhhhhhhhhhhh',req.session.idUser);
-    let objId={
-        UserId   :req.session.idUser,
-        ThreadId :req.params.id,
-        role     :'member'
+//   let id =  req.session.idUser
+    let objAddTread = {
+        UserId : req.session.idUser,
+        ThreadId : req.params.id
     }
+  res.render('MakananCreate',{dataUT:objAddTread,err:null})
+})
 
-    Model.Makanan.create(objId)
-    .then(function() {
-      // console.log('---',req.session.idUser)
-      Model.User.findById(req.session.idUser,{
-        include: Model.Thread
-      })
-    .then(function(data){
-          res.render('userView',{data:data.Threads,idUser:req.params.id
-          })
-
-    .catch(function(err) {
-        res.send(err)
-      })
+router.post('/join/:id',(req,res)=>{
+    let objCreate = {
+        ThreadId : req.body.ThreadId,
+        UserId   : req.body.UserId,
+        role     : 'member',
+        namaMakanan:req.body.makanan
+    }
+    // res.send(objCreate)
+    Model.Makanan.create(objCreate)
+    .then(()=>{
+        res.redirect(`/thread/find/${req.body.UserId}`)
+    }).catch(err=>{
+        res.render('MakananCreate', {dataUT:objCreate,err:err })
     })
-
-    .catch(function(err) {
-        res.send(err)
-    })
-  })
 })
 
 router.get('/user/add', (req, res) => {
@@ -155,6 +154,7 @@ router.post('/user/add', (req, res) => {
       let objId={
           UserId   :req.session.idUser,
           ThreadId :dataThread.id,
+          namaMakanan:req.body.namaMakanan,
           role     :'master'
       }
       Model.Makanan.create(objId)
@@ -168,10 +168,10 @@ router.post('/user/add', (req, res) => {
           })
       })
       .catch(function(err) {
-        res.send(err)
+          res.render('userAddThread', { err: err })
     })
   }).catch(function(err) {
-    res.send(err)
+      res.render('userAddThread', { err: err })
 })
 })
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>create CJ</title>
+</head>
+<body>
+    <form  method="post">
+        <input name="UserId" type="hidden" value="<%=dataUT.UserId%>">
+        <input name="ThreadId" type="hidden" value="<%=dataUT.ThreadId%>">
+        <input name="makanan" placeholder="masukan makanan kamu !" type="text">
+        <input type="submit" value="GANBATE">
+    </form>
+    <%if(err){%>
+        <p style="color:red"><%=err%></p>
+    <%}%>
+   
+</body>
+</html>
