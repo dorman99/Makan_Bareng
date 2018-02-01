@@ -13,15 +13,28 @@
             <th>judulThread</th>
             <th>jenisMakananid</th>
             <th>waktuMulai</th>
+            <th>status</th>
           </tr>
         </thead>
         <tbody>
-          <%keyThread.forEach(data =>{%>
+          <%dataThread.forEach(data =>{%>
+            <% let count = 0%>
                     <td><%=data.id%></td>
                     <td><%=data.judulThread%></td>
                     <td><%=data.JenisMakananID%></td>
                     <td><%=data.waktuMulai%></td>
+                    <%dataUser.Makanans.find(con=>{%>
+                      <%console.log(con)%>
+                      <%if(con.ThreadId == data.id){%>
+                      <% count++%>
+                      <%}%>
+                   <% })%>
+                   <%if(count>=1){%>
+                      <td> <p>udah join</p></td>
+                   <%}else{%>
                     <td><a href="/thread/join/<%=data.id%>">join</td>
+                   <%}%>
+                      <%count=0%>
                 </tr>
           <%})%>
         </tbody>

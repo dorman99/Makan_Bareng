@@ -4,7 +4,15 @@ module.exports = (sequelize, DataTypes) => {
     UserId: DataTypes.INTEGER,
 
     ThreadId: DataTypes.INTEGER,
-    role:DataTypes.STRING
+    role:DataTypes.STRING,
+    namaMakanan: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          msg:'kamu harus bawa makannan juga dong'
+        }
+      }
+    }
   });
   Makanan.associate = function(models){
     Makanan.belongsTo(models.User)
