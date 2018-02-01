@@ -8,31 +8,65 @@
     <h1>WELCOME</h1>
     <h3><%=dataUser.name%></h3>
     <h1>MAKAN BARENG</h1>
+    <br>
     <a href="/thread/joinThread/<%=dataUser.id%>">Gabung Acara Makan Bareng</a>
-
+    <br>
     <a href="/thread/user/add">Buat Acara Makan Bareng</a>
-    <table border="1">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Acara Party</th>
-            <th>Tema Makanan</th>
-            <th>Makanan yang kamu bawa</th>
-            <th>Time Started</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <%dataThreads.forEach(function(data){%>
-          <tr>
-
-              <td><%= data.id %></td>
-              <td><%= data.judulThread %></td>
-              <td><%= data.JenisMakananID %></td>
-              <td><%=data.Makanan.namaMakanan%></td>
-              <td><%= data.waktuMulai %></td>
+    <table>
+      <table border="1">
+          <thead>
+            <h4>JANGAN LUPA ACARA YANG KAMU BUAT</h4>
+            <tr>
+              <th>id</th>
+              <th>Acara Party</th>
+              <th>Tema Makanan</th>
+              <th>Makanan Party</th>
+              <th>Time Started</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%dataThreads.forEach(function(data){%>
+              <%if(data.Makanan.role != "master"){%>
+            <tr>
+                <td><%= data.id %></td>
+                <td><%= data.judulThread %></td>
+                <td><%= data.JenisMakananID %></td>
+                <td><%=data.Makanan.namaMakanan%></td>
+                <td><%= data.waktuMulai %></td>
+                <td> <a href="/thread/delete/makanan/<%=data.id%>">delete</a> </td>
+              <%}%>
+            </tr>
             <%})%>
-          </tr>
-        </tbody>
+          </tbody>
+    </table>
+    <table>
+      <table border="1">
+      <thead>
+        <h4>Acara Yang Kamu Join</h4>
+        <tr>
+          <th>id</th>
+          <th>Acara Party</th>
+          <th>Tema Makanan</th>
+          <th>Makanan yang kamu bawa</th>
+          <th>Time Started</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataThreads.forEach(function(data){%>
+          <%if(data.Makanan.role != "member"){%>
+        <tr>
+            <td><%= data.id %></td>
+            <td><%= data.judulThread %></td>
+            <td><%= data.JenisMakananID %></td>
+            <td><%=data.Makanan.namaMakanan%></td>
+            <td><%= data.waktuMulai %></td>
+            <td> <a href="/thread/delete/makanan/<%=data.id%>">delete</a> </td>
+          <%}%>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
     </body>
   </html>
